@@ -1,7 +1,10 @@
-export default function Footer() {
+'use client'
+import React from 'react'
+
+export const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-900 text-white text-center py-4">
-      <p>© {new Date().getFullYear()} Pratik Aute. All rights reserved.</p>
+    <footer className="py-8 mt-12 border-t border-slate-200 dark:border-slate-800">
+      <div className="container text-center text-sm text-slate-500">© {new Date().getFullYear()} Your Name. All rights reserved.</div>
     </footer>
-  );
+  )
 }
