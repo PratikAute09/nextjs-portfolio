@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 type Skill = {
   name: string;
-  category: 'Frontend' | 'Backend' | 'Tools' | 'Hosting' | 'Database' | 'Auth' | 'Other';
+  category: 'Programming' | 'Frontend' | 'Backend' | 'Tools' | 'Hosting' | 'Database' | 'Auth' | 'Other';
   level: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
   percent: number;
   icon?: string;
@@ -21,19 +21,38 @@ const ALL_SKILLS: Skill[] = [
   { name: 'Redux', category: 'Frontend', level: 'Intermediate', percent: 78, icon: '🔁' },
   { name: 'Tailwind CSS', category: 'Frontend', level: 'Advanced', percent: 91, icon: '💨' },
   { name: 'Bootstrap', category: 'Frontend', level: 'Intermediate', percent: 80, icon: '🅱️' },
+
+  // Programming Languages
+  { name: 'C', category: 'Programming', level: 'Advanced', percent: 85, icon: '🅲' },
+  { name: 'C++', category: 'Programming', level: 'Advanced', percent: 86, icon: '💠' },
+  { name: 'Java', category: 'Programming', level: 'Advanced', percent: 88, icon: '☕' },
+  { name: 'PHP', category: 'Programming', level: 'Intermediate', percent: 75, icon: '🐘' },
+  { name: 'Python', category: 'Programming', level: 'Advanced', percent: 90, icon: '🐍' },
+
+  // Backend Frameworks
+  { name: 'Spring Boot', category: 'Backend', level: 'Intermediate', percent: 80, icon: '🌱' },
+  { name: 'Microservices', category: 'Backend', level: 'Intermediate', percent: 78, icon: '🧩' },
   { name: 'Node.js', category: 'Backend', level: 'Advanced', percent: 87, icon: '🟢' },
   { name: 'Express.js', category: 'Backend', level: 'Advanced', percent: 85, icon: '🚂' },
+
+  // Databases
   { name: 'MongoDB', category: 'Database', level: 'Intermediate', percent: 75, icon: '🍃' },
-  { name: 'Sql', category: 'Database', level: 'Intermediate', percent: 72, icon: '📊' },
+  { name: 'SQL', category: 'Database', level: 'Intermediate', percent: 72, icon: '📊' },
+
+  // Authentication
   { name: 'JWT', category: 'Auth', level: 'Intermediate', percent: 70, icon: '🔐' },
+
+  // Tools
   { name: 'Git', category: 'Tools', level: 'Advanced', percent: 88, icon: '📁' },
   { name: 'Postman', category: 'Tools', level: 'Intermediate', percent: 74, icon: '📬' },
+
+  // Hosting
   { name: 'Vercel', category: 'Hosting', level: 'Intermediate', percent: 80, icon: '⚡' },
   { name: 'Netlify', category: 'Hosting', level: 'Intermediate', percent: 78, icon: '🛰️' },
   { name: 'Render', category: 'Hosting', level: 'Beginner', percent: 60, icon: '🛠️' },
 ];
 
-const CATEGORIES = ['All', 'Frontend', 'Backend', 'Database', 'Auth', 'Tools', 'Hosting'] as const;
+const CATEGORIES = ['All', 'Programming', 'Frontend', 'Backend', 'Database', 'Auth', 'Tools', 'Hosting'] as const;
 
 export default function SkillsPage() {
   const [active, setActive] = useState<(typeof CATEGORIES)[number]>('All');
@@ -63,7 +82,7 @@ export default function SkillsPage() {
           </p>
         </header>
 
-        {/* controls */}
+        {/* Controls */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map((cat) => (
@@ -89,7 +108,7 @@ export default function SkillsPage() {
           </div>
         </div>
 
-        {/* grid */}
+        {/* Skills Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((skill, idx) => (
             <motion.article
@@ -104,7 +123,9 @@ export default function SkillsPage() {
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-semibold">{skill.name}</h3>
-                    <span className="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">{skill.level}</span>
+                    <span className="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+                      {skill.level}
+                    </span>
                   </div>
 
                   <div className="mt-3">
@@ -114,7 +135,6 @@ export default function SkillsPage() {
                         animate={{ width: `${skill.percent}%` }}
                         transition={{ duration: 0.9 }}
                         className="h-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
-                        style={{ width: `${skill.percent}%` }}
                       />
                     </div>
                     <div className="mt-2 text-xs text-gray-500 dark:text-gray-300 flex items-center justify-between">
@@ -128,12 +148,16 @@ export default function SkillsPage() {
           ))}
 
           {filtered.length === 0 && (
-            <div className="col-span-full text-center py-12 text-gray-500 dark:text-gray-400">No skills match your search.</div>
+            <div className="col-span-full text-center py-12 text-gray-500 dark:text-gray-400">
+              No skills match your search.
+            </div>
           )}
         </div>
 
-        {/* footer note */}
-        <p className="text-center text-xs text-gray-500 dark:text-gray-400 mt-8">Built with Next.js, Tailwind CSS & Framer Motion.</p>
+        {/* Footer Note */}
+        <p className="text-center text-xs text-gray-500 dark:text-gray-400 mt-8">
+          Built with Next.js, Tailwind CSS & Framer Motion.
+        </p>
       </div>
     </section>
   );
