@@ -1,96 +1,77 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react"; // install: npm install lucide-react
 
-export const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+export default function Header() {
+  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Skills", href: "/skill" },
+    { name: "Projects", href: "/projects" },
+    { name: "Contact", href: "/contact" },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
-        {/* Logo / Name */}
-        <Link
-          href="/"
-          className="font-bold text-lg tracking-wide hover:text-primary transition-colors"
-        >
-          Pratik Aute
+    <header className="fixed top-0 left-0 w-full bg-[#0D0D1A] shadow-md z-50">
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
+        
+        {/* Logo */}
+        <Link href="/" className="text-xl font-bold text-cyan-400 flex flex-col leading-tight">
+          <span>
+            <span className="text-[#09F]">&lt;/&gt;</span> Pratik Aute
+          </span>
+          <span className="text-xs text-purple-300">MERN-Stack Developer</span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-6">
-          <Link href="/" className="hover:text-primary transition-colors">
-            Home
-          </Link>
-          <Link href="/about" className="hover:text-primary transition-colors">
-            About
-          </Link>
-          <Link href="/skill" className="hover:text-primary transition-colors">
-            Skills
-          </Link>
-          <Link
-            href="/projects"
-            className="hover:text-primary transition-colors"
-          >
-            Projects
-          </Link>
-          <Link href="/contact" className="hover:text-primary transition-colors">
-            Contact
-          </Link>
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex space-x-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className={`relative font-medium hover:text-cyan-400 transition 
+                ${pathname === link.href ? "text-cyan-400" : "text-white"}`}
+            >
+              {link.name}
+              {pathname === link.href && (
+                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-cyan-400 rounded-full"></span>
+              )}
+            </Link>
+          ))}
         </nav>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-slate-800 dark:text-slate-100"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden text-white"
+          aria-label="Toggle Menu"
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
-          <nav className="flex flex-col px-6 py-4 gap-4">
+      {isOpen && (
+        <div className="md:hidden bg-[#0D0D1A] px-6 py-4 space-y-4">
+          {navLinks.map((link) => (
             <Link
-              href="/"
-              className="hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
+              key={link.name}
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className={`block font-medium hover:text-cyan-400 transition 
+                ${pathname === link.href ? "text-cyan-400" : "text-white"}`}
             >
-              Home
+              {link.name}
             </Link>
-            <Link
-              href="/about"
-              className="hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              About
-            </Link>
-            <Link
-              href="/skill"
-              className="hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Skills
-            </Link>
-            <Link
-              href="/projects"
-              className="hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Projects
-            </Link>
-            <Link
-              href="/contact"
-              className="hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contact
-            </Link>
-          </nav>
+          ))}
         </div>
       )}
     </header>
   );
-};
+}
