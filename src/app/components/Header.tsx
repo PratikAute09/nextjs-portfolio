@@ -1,9 +1,8 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X } from "lucide-react"; // install: npm install lucide-react
+import { Menu, X } from "lucide-react";
 
 export default function Header() {
   const pathname = usePathname();
@@ -18,7 +17,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-[#0D0D1A] shadow-md z-50">
+    <header className="fixed top-0 w-full bg-black z-50 shadow-md">
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
         
         {/* Logo */}
