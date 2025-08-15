@@ -1,113 +1,52 @@
 "use client";
-
-import { motion } from "framer-motion";
+import React from "react";
 
 export default function About() {
   return (
-    <section className="min-h-screen bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-black text-gray-800 dark:text-gray-100 px-6 py-16">
-      <div className="max-w-5xl mx-auto space-y-16">
-        
-        {/* About Me */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h1 className="text-4xl font-extrabold mb-6">About Me</h1>
-          <p className="mb-4 leading-relaxed">
-            My name is <span className="font-semibold">Pratik Aute</span>, a
-            passionate Full-Stack Developer based in Pune with over 1 year of
-            hands-on experience in{" "}
-            <span className="text-indigo-500 font-medium">
-              modern web technologies
-            </span>
-            .
-          </p>
-          <p className="mb-4 leading-relaxed">
-            I thrive on building impactful digital solutions that help
-            businesses strengthen their online presence. My expertise spans
-            across frontend and backend development, ensuring seamless user
-            experiences and robust architectures.
-          </p>
-          <p className="leading-relaxed">
-            With an entrepreneurial mindset, I stay adaptable, goal-oriented,
-            and constantly upgrade my skills to deliver{" "}
-            <span className="text-purple-500 font-medium">
-              cutting-edge solutions
-            </span>
-            .
-          </p>
-        </motion.div>
+    <section className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 text-white flex items-center justify-center px-6 py-16">
+      <div className="max-w-4xl mx-auto text-center">
+        {/* Heading */}
+        <h1 className="text-5xl font-extrabold mb-6 tracking-tight">
+          About Me
+        </h1>
 
-        {/* Work Experience */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <h2 className="text-3xl font-bold mb-6">Work Experience</h2>
-          <ul className="space-y-3 list-disc pl-6 text-gray-700 dark:text-gray-300">
-            <li>
-              1+ year as a MERN-stack developer, working on scalable,
-              responsive, and secure applications.
-            </li>
-            <li>
-              Built dynamic UI using React.js, Next.js, Tailwind CSS, and
-              component-driven architecture.
-            </li>
-            <li>
-              Developed RESTful APIs with Node.js & Express, integrated MongoDB
-              with Mongoose, and implemented JWT authentication.
-            </li>
-            <li>
-              Managed state with Redux, Context API, and React Hooks for smooth
-              data flow.
-            </li>
-            <li>
-              Used Git, Postman, Vercel, Netlify, and Render for version
-              control, testing, and deployment.
-            </li>
-            <li>
-              Collaborated in Agile teams, conducted code reviews, and followed
-              best practices.
-            </li>
-          </ul>
-        </motion.div>
+        {/* Divider */}
+        <div className="w-20 h-1 bg-cyan-400 mx-auto mb-8 rounded-full"></div>
 
-        {/* Companies */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <h2 className="text-3xl font-bold mb-2">Companies Worked At</h2>
-          <p>
-            <span className="font-semibold">
-              Tech Kirtika Technology Pvt Ltd, Pune
-            </span>{" "}
-            – Full-Stack Developer
-          </p>
-          <span className="text-sm text-gray-500 dark:text-gray-400">
-            July 2024 – Aug 2025
-          </span>
-        </motion.div>
+        {/* Profile Image 
+        <div className="flex justify-center mb-8">
+          <img
+            src="/profile.jpg" // Replace with your image path
+            alt="Pratik Aute"
+            className="w-40 h-40 rounded-full object-cover shadow-lg border-4 border-cyan-400"
+          />
+        </div>  */}
 
-        {/* Work Policy */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <h2 className="text-3xl font-bold mb-2">Work Policy</h2>
-          <p className="leading-relaxed">
-            I dedicate most of my time to learning, building, and improving my
-            skills. My philosophy revolves around{" "}
-            <span className="text-indigo-500 font-medium">
-              continuous improvement
-            </span>{" "}
-            and staying ahead with the latest technologies.
-          </p>
-        </motion.div>
+        {/* Intro */}
+        <p className="text-lg md:text-xl leading-relaxed text-gray-300 mb-8">
+          I’m <span className="text-cyan-400 font-semibold">Pratik Aute</span> from Pune.  
+          I have completed my Master&apos;s in Computer Science in 2024.  
+          I’m passionate about <span className="font-semibold text-cyan-300">communication</span> and  
+          <span className="font-semibold text-cyan-300"> problem-solving</span>.  
+          I enjoy interacting with people, understanding their needs, and finding  
+          solutions quickly. I’m looking forward to starting my career in the  
+          software industry because it allows me to use my communication skills  
+          and work in a dynamic environment.
+        </p>
+
+        {/* Skills Section */}
+        <div className="flex flex-wrap justify-center gap-4 mt-6">
+          {["Communication", "Problem Solving", "Teamwork", "Adaptability"].map(
+            (skill, index) => (
+              <span
+                key={index}
+                className="px-4 py-2 bg-slate-700 rounded-full text-sm md:text-base shadow-md border border-cyan-400 hover:bg-cyan-500 hover:text-black transition-all duration-300"
+              >
+                {skill}
+              </span>
+            )
+          )}
+        </div>
       </div>
     </section>
   );
